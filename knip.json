@@ -16,9 +16,17 @@
       "ignoreDependencies": ["@tailwindcss/postcss", "postcss-load-config"]
     },
     "apps/keycloak": {
-      "entry": ["src/login/KcPage.tsx", "src/login/KcPageStory.tsx"],
+      "entry": [
+        "src/login/KcPage.tsx",
+        "src/login/KcPageStory.tsx",
+        "src/**/*.stories.tsx"
+      ],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignore": ["src/kc.gen.tsx"]
+      "ignore": ["src/kc.gen.tsx"],
+      "storybook": {
+        "config": [".storybook/{main,preview}.{js,jsx,ts,tsx}"],
+        "entry": ["src/**/*.stories.{js,jsx,ts,tsx}"]
+      }
     },
     "packages/ts-cfg": {
       "entry": [],
