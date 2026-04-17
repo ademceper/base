@@ -6,6 +6,12 @@ import { useState } from "react"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
+function formatCode(code: string): string {
+  const trimmed = code.replace(/\s+/g, "")
+  const groupSize = trimmed.length % 3 === 0 ? 3 : 4
+  return trimmed.match(new RegExp(`.{1,${groupSize}}`, "g"))?.join(" ") ?? trimmed
+}
+
 export default function Code(
   props: PageProps<Extract<KcContext, { pageId: "code.ftl" }>, I18n>,
 ) {
@@ -39,27 +45,25 @@ export default function Code(
       }
     >
       {code.success ? (
-        <div id="kc-code" className="space-y-4">
+        <div id="kc-code" className="flex flex-col items-center gap-8 py-6">
           <p className="text-center text-sm text-muted-foreground">
             {msg("copyCodeInstruction")}
           </p>
 
-          <div className="group relative overflow-hidden rounded-xl border border-border/60 bg-muted/40 px-4 py-5">
-            <code
-              id="code"
-              className="block text-center font-mono text-lg tracking-[0.2em] break-all text-foreground select-all"
-            >
-              {code.code}
-            </code>
-          </div>
+          <code
+            id="code"
+            className="block text-center font-mono text-3xl font-semibold tracking-tight tabular-nums break-all select-all text-foreground"
+          >
+            {formatCode(code.code ?? "")}
+          </code>
 
           <Button
             type="button"
-            variant="outline"
+            variant="default"
             className="w-full"
             onClick={onCopy}
           >
-            {copied ? "Copied" : "Copy code"}
+            {copied ? "Copied" : "Copy"}
           </Button>
         </div>
       ) : (
