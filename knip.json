@@ -15,6 +15,11 @@
       "project": ["src/**/*.{ts,tsx}"],
       "ignoreDependencies": ["@tailwindcss/postcss"]
     },
+    "apps/keycloak": {
+      "entry": ["src/main.tsx", "src/login/KcPage.tsx"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["@vitejs/plugin-react"]
+    },
     "packages/ts-cfg": {
       "entry": [],
       "project": []
