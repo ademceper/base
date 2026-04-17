@@ -38,6 +38,9 @@ importers:
       '@base/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       keycloakify:
         specifier: ^11.15.0
         version: 11.15.3
