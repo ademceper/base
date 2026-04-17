@@ -10,8 +10,9 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.12",
     "@base/ts-cfg": "workspace:*",
+    "@biomejs/biome": "^2.4.12",
+    "lefthook": "^2.1.6",
     "turbo": "^2.8.17",
     "typescript": "5.9.3"
   },
