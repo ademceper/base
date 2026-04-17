@@ -39,6 +39,9 @@ npm-debug.log*
 .keycloakify/
 dist_keycloak/
 
+# Storybook
+storybook-static/
+
 # Local files
 image.png
 *.local.png
