@@ -65,7 +65,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
   const commonProps = {
     i18n,
     Template,
-    doUseDefaultCss: true,
+    doUseDefaultCss: false,
     classes,
   }
   const userProfileProps = {
@@ -203,7 +203,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 i18n={i18n}
                 classes={classes}
                 Template={Template}
-                doUseDefaultCss={true}
+                doUseDefaultCss={false}
                 UserProfileFormFields={UserProfileFormFields}
                 doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
