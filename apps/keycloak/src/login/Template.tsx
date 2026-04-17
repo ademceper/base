@@ -47,11 +47,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <div className="relative flex min-h-svh flex-col items-center justify-center bg-background px-4 py-10 text-foreground antialiased">
-      <div className="absolute inset-x-0 top-0 mx-auto flex w-full max-w-sm items-center justify-between px-6 py-4">
-        <span className="text-sm font-medium tracking-tight text-muted-foreground">
-          {realm.displayName || realm.name}
-        </span>
-        {enabledLanguages.length > 1 && (
+      {enabledLanguages.length > 1 && (
+        <div className="absolute top-0 right-0 px-6 py-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
@@ -71,7 +68,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-        )}
+        </div>
+      )}
+
+      <div
+        className="absolute inset-x-0 top-16 text-center text-2xl tracking-tight"
+        style={{ fontFamily: "'Climate Crisis', sans-serif" }}
+      >
+        {realm.displayName || realm.name}
       </div>
 
       <main className="w-full max-w-sm space-y-6">
