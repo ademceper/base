@@ -1,6 +1,7 @@
 {
   "extends": "@base/ts-cfg/react-library.json",
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
     "baseUrl": ".",
     "paths": {
       "@base/ui/*": ["./src/*"]

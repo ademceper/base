@@ -13,16 +13,17 @@
     "packages/ui": {
       "entry": ["src/components/*.tsx", "src/lib/*.ts"],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignoreDependencies": ["@tailwindcss/postcss"]
+      "ignoreDependencies": ["@tailwindcss/postcss", "postcss-load-config"]
     },
     "apps/keycloak": {
-      "entry": ["src/main.tsx", "src/login/KcPage.tsx"],
+      "entry": ["src/login/KcPage.tsx", "src/login/KcPageStory.tsx"],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignoreDependencies": ["@vitejs/plugin-react"]
+      "ignore": ["src/kc.gen.tsx", "src/login/i18n.ts"]
     },
     "packages/ts-cfg": {
       "entry": [],
-      "project": []
+      "project": [],
+      "ignoreDependencies": ["next"]
     }
   }
 }

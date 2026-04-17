@@ -1,6 +1,7 @@
 {
   "extends": "@base/ts-cfg/nextjs.json",
   "compilerOptions": {
+    "ignoreDeprecations": "5.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
