@@ -8,13 +8,15 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "knip": "knip"
   },
   "devDependencies": {
     "@base/ts-cfg": "workspace:*",
     "@biomejs/biome": "^2.4.12",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
+    "knip": "^6.4.1",
     "lefthook": "^2.1.6",
     "turbo": "^2.8.17",
     "typescript": "5.9.3"

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": [],
+      "project": []
+    },
+    "apps/web": {
+      "entry": ["app/**/page.tsx"],
+      "project": ["**/*.{ts,tsx}"],
+      "ignoreDependencies": ["@tailwindcss/postcss"]
+    },
+    "packages/ui": {
+      "entry": ["src/components/*.tsx", "src/lib/*.ts"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["@tailwindcss/postcss"]
+    },
+    "packages/ts-cfg": {
+      "entry": [],
+      "project": []
+    }
+  }
+}
