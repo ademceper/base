@@ -47,7 +47,6 @@
     {
       "includes": [
         "apps/keycloak/src/login/pages/**",
-        "apps/keycloak/src/login/Template.tsx",
         "apps/keycloak/src/login/UserProfileFormFields.tsx"
       ],
       "linter": {
