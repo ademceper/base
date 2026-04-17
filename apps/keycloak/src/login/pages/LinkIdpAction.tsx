@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -36,28 +38,8 @@ export default function LinkIdpAction(
       >
         <div className={kcClsx("kcFormGroupClass")}>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass",
-              )}
-              name="continue"
-              id="kc-continue"
-              type="submit"
-              value={msgStr("doContinue")}
-            />
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonDefaultClass",
-                "kcButtonLargeClass",
-              )}
-              name="cancel-aia"
-              id="kc-cancel"
-              type="submit"
-              value={msgStr("doCancel")}
-            />
+            <Button type="submit" name="continue" id="kc-continue">{msgStr("doContinue")}</Button>
+            <Button type="submit" name="cancel-aia" id="kc-cancel">{msgStr("doCancel")}</Button>
           </div>
         </div>
       </form>

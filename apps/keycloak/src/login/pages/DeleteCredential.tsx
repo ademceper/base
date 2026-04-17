@@ -1,4 +1,4 @@
-import { getKcClsx } from "keycloakify/login/lib/kcClsx"
+import { Button } from "@base/ui/components/button"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
@@ -12,11 +12,6 @@ export default function DeleteCredential(
   const { kcContext, i18n, doUseDefaultCss, Template, classes } = props
 
   const { msgStr, msg } = i18n
-
-  const { kcClsx } = getKcClsx({
-    doUseDefaultCss,
-    classes,
-  })
 
   const { url, credentialLabel } = kcContext
 
@@ -33,28 +28,8 @@ export default function DeleteCredential(
         {msg("deleteCredentialMessage", credentialLabel)}
       </div>
       <form className="form-actions" action={url.loginAction} method="POST">
-        <input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonPrimaryClass",
-            "kcButtonLargeClass",
-          )}
-          name="accept"
-          id="kc-accept"
-          type="submit"
-          value={msgStr("doConfirmDelete")}
-        />
-        <input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonDefaultClass",
-            "kcButtonLargeClass",
-          )}
-          name="cancel-aia"
-          value={msgStr("doCancel")}
-          id="kc-decline"
-          type="submit"
-        />
+        <Button type="submit" name="accept" id="kc-accept">{msgStr("doConfirmDelete")}</Button>
+        <Button type="submit" name="cancel-aia" id="kc-decline">{msgStr("doCancel")}</Button>
       </form>
       <div className="clearfix" />
     </Template>

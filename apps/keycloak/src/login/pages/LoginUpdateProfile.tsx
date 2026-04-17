@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -67,19 +69,9 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
             <div className={kcClsx("kcFormOptionsWrapperClass")} />
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              disabled={!isFormSubmittable}
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                !isAppInitiatedAction && "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Button type="submit" disabled={!isFormSubmittable}>{msgStr("doSubmit")}</Button>
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -91,7 +83,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
                 formNoValidate
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>

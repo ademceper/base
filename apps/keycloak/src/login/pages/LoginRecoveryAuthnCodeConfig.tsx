@@ -1,3 +1,8 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Label } from "@base/ui/components/label"
+
+
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginRecoveryAuthnCodeConfig.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -68,48 +73,48 @@ export default function LoginRecoveryAuthnCodeConfig(
 
       {/* actions */}
       <div className={kcClsx("kcRecoveryCodesActions")}>
-        <button
+        <Button
           id="printRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-print" aria-hidden="true" />{" "}
           {msg("recovery-codes-print")}
-        </button>
-        <button
+        </Button>
+        <Button
           id="downloadRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-save" aria-hidden="true" />{" "}
           {msg("recovery-codes-download")}
-        </button>
-        <button
+        </Button>
+        <Button
           id="copyRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-blueprint" aria-hidden="true" />{" "}
           {msg("recovery-codes-copy")}
-        </button>
+        </Button>
       </div>
 
       {/* confirmation checkbox */}
       <div className={kcClsx("kcFormOptionsClass")}>
-        <input
+        <Checkbox
           className={kcClsx("kcCheckInputClass")}
-          type="checkbox"
           id="kcRecoveryCodesConfirmationCheck"
           name="kcRecoveryCodesConfirmationCheck"
-          onChange={(event) => {
-            //@ts-expect-error: This is inherited from the original code
-            document.getElementById("saveRecoveryAuthnCodesBtn").disabled =
-              !event.target.checked
+          onCheckedChange={(checked) => {
+            const btn = document.getElementById(
+              "saveRecoveryAuthnCodesBtn",
+            ) as HTMLButtonElement | null
+            if (btn) btn.disabled = !checked
           }}
         />
-        <label htmlFor="kcRecoveryCodesConfirmationCheck">
+        <Label htmlFor="kcRecoveryCodesConfirmationCheck">
           {msg("recovery-codes-confirmation-message")}
-        </label>
+        </Label>
       </div>
 
       <form
@@ -141,18 +146,8 @@ export default function LoginRecoveryAuthnCodeConfig(
 
         {isAppInitiatedAction ? (
           <>
-            <input
-              type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass",
-              )}
-              id="saveRecoveryAuthnCodesBtn"
-              value={msgStr("recovery-codes-action-complete")}
-              disabled
-            />
-            <button
+            <Button type="submit" id="saveRecoveryAuthnCodesBtn" disabled>{msgStr("recovery-codes-action-complete")}</Button>
+            <Button
               type="submit"
               className={kcClsx(
                 "kcButtonClass",
@@ -164,21 +159,10 @@ export default function LoginRecoveryAuthnCodeConfig(
               value="true"
             >
               {msg("recovery-codes-action-cancel")}
-            </button>
+            </Button>
           </>
         ) : (
-          <input
-            type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonPrimaryClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass",
-            )}
-            id="saveRecoveryAuthnCodesBtn"
-            value={msgStr("recovery-codes-action-complete")}
-            disabled
-          />
+          <Button type="submit" id="saveRecoveryAuthnCodesBtn" disabled>{msgStr("recovery-codes-action-complete")}</Button>
         )}
       </form>
     </Template>
@@ -195,13 +179,10 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
-              type="checkbox"
-              id="logout-sessions"
+            <Checkbox id="logout-sessions"
               name="logout-sessions"
               value="on"
-              defaultChecked={true}
-            />
+              defaultChecked={true} />
             {msg("logoutOtherSessions")}
           </label>
         </div>

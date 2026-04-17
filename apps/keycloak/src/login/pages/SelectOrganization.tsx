@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { MouseEvent, useRef, useState } from "react"
@@ -71,7 +73,7 @@ export default function SelectOrganization(
           >
             {organizations.map(({ alias, name }) => (
               <li key={alias}>
-                <button
+                <Button
                   id={`organization-${alias}`}
                   className={kcClsx(
                     "kcFormSocialAccountListButtonClass",
@@ -84,7 +86,7 @@ export default function SelectOrganization(
                   <span className={kcClsx("kcFormSocialAccountNameClass")}>
                     {name ?? alias}
                   </span>
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

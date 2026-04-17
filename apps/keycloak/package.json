@@ -13,18 +13,22 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@base/ui": "workspace:*",
     "keycloakify": "^11.15.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@base/ts-cfg": "workspace:*",
     "@storybook/react": "^8.1.10",
     "@storybook/react-vite": "^8.1.10",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.2.1",
-    "@base/ts-cfg": "workspace:*",
     "storybook": "^8.1.10",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^5.0.8"
   }

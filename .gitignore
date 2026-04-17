@@ -38,6 +38,7 @@ npm-debug.log*
 # Keycloakify
 .keycloakify/
 dist_keycloak/
+apps/keycloak/public/keycloakify-dev-resources/
 
 # Storybook
 storybook-static/

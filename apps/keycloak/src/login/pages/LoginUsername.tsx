@@ -1,3 +1,8 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginUsername.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -130,17 +135,16 @@ export default function LoginUsername(
             >
               {!usernameHidden && (
                 <div className={kcClsx("kcFormGroupClass")}>
-                  <label htmlFor="username" className={kcClsx("kcLabelClass")}>
+                  <Label htmlFor="username">
                     {!realm.loginWithEmailAllowed
                       ? msg("username")
                       : !realm.registrationEmailAsUsername
                         ? msg("usernameOrEmail")
                         : msg("email")}
-                  </label>
-                  <input
-                    tabIndex={2}
+                  </Label>
+                  <Input tabIndex={2}
                     id="username"
-                    className={kcClsx("kcInputClass")}
+                    
                     name="username"
                     defaultValue={login.username ?? ""}
                     type="text"
@@ -150,8 +154,7 @@ export default function LoginUsername(
                         ? "username webauthn"
                         : "username"
                     }
-                    aria-invalid={messagesPerField.existsError("username")}
-                  />
+                    aria-invalid={messagesPerField.existsError("username")} />
                   {messagesPerField.existsError("username") && (
                     <span
                       id="input-error"
@@ -168,36 +171,21 @@ export default function LoginUsername(
                 <div id="kc-form-options">
                   {realm.rememberMe && !usernameHidden && (
                     <div className="checkbox">
-                      <label>
-                        <input
-                          tabIndex={3}
+                      <Label>
+                        <Checkbox tabIndex={3}
                           id="rememberMe"
                           name="rememberMe"
-                          type="checkbox"
-                          defaultChecked={!!login.rememberMe}
-                        />{" "}
+                          
+                          defaultChecked={!!login.rememberMe} />{" "}
                         {msg("rememberMe")}
-                      </label>
+                      </Label>
                     </div>
                   )}
                 </div>
               </div>
 
               <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                <input
-                  tabIndex={4}
-                  disabled={isLoginButtonDisabled}
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass",
-                  )}
-                  name="login"
-                  id="kc-login"
-                  type="submit"
-                  value={msgStr("doLogIn")}
-                />
+                <Button type="submit" tabIndex={4} disabled={isLoginButtonDisabled} name="login" id="kc-login">{msgStr("doLogIn")}</Button>
               </div>
             </form>
           )}
@@ -236,19 +224,10 @@ export default function LoginUsername(
             )}
           <br />
 
-          <input
-            id={webAuthnButtonId}
-            type="button"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass",
-            )}
-            value={msgStr("passkey-doAuthenticate")}
-          />
+          <Button type="button" id={webAuthnButtonId}>{msgStr("passkey-doAuthenticate")}</Button>
         </>
       )}
     </Template>
   )
 }
+

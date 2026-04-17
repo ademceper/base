@@ -1,3 +1,7 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -42,9 +46,9 @@ export default function LoginUpdatePassword(
       >
         <div className={kcClsx("kcFormGroupClass")}>
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <label htmlFor="password-new" className={kcClsx("kcLabelClass")}>
+            <Label htmlFor="password-new">
               {msg("passwordNew")}
-            </label>
+            </Label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
             <PasswordWrapper
@@ -52,18 +56,16 @@ export default function LoginUpdatePassword(
               i18n={i18n}
               passwordInputId="password-new"
             >
-              <input
-                type="password"
+              <Input type="password"
                 id="password-new"
                 name="password-new"
-                className={kcClsx("kcInputClass")}
+                
                 autoFocus
                 autoComplete="new-password"
                 aria-invalid={messagesPerField.existsError(
                   "password",
                   "password-confirm",
-                )}
-              />
+                )} />
             </PasswordWrapper>
 
             {messagesPerField.existsError("password") && (
@@ -81,12 +83,9 @@ export default function LoginUpdatePassword(
 
         <div className={kcClsx("kcFormGroupClass")}>
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <label
-              htmlFor="password-confirm"
-              className={kcClsx("kcLabelClass")}
-            >
+            <Label htmlFor="password-confirm">
               {msg("passwordConfirm")}
-            </label>
+            </Label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
             <PasswordWrapper
@@ -94,17 +93,15 @@ export default function LoginUpdatePassword(
               i18n={i18n}
               passwordInputId="password-confirm"
             >
-              <input
-                type="password"
+              <Input type="password"
                 id="password-confirm"
                 name="password-confirm"
-                className={kcClsx("kcInputClass")}
+                
                 autoComplete="new-password"
                 aria-invalid={messagesPerField.existsError(
                   "password",
                   "password-confirm",
-                )}
-              />
+                )} />
             </PasswordWrapper>
 
             {messagesPerField.existsError("password-confirm") && (
@@ -122,18 +119,9 @@ export default function LoginUpdatePassword(
         <div className={kcClsx("kcFormGroupClass")}>
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                !isAppInitiatedAction && "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Button type="submit" >{msgStr("doSubmit")}</Button>
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -144,7 +132,7 @@ export default function LoginUpdatePassword(
                 value="true"
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -162,16 +150,13 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              id="logout-sessions"
+          <Label>
+            <Checkbox id="logout-sessions"
               name="logout-sessions"
               value="on"
-              defaultChecked={true}
-            />
+              defaultChecked={true} />
             {msg("logoutOtherSessions")}
-          </label>
+          </Label>
         </div>
       </div>
     </div>
@@ -194,7 +179,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -211,7 +196,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }

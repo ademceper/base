@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -51,17 +53,9 @@ export default function DeleteAccountConfirm(
           {msg("finalDeletionConfirmation")}
         </p>
         <div id="kc-form-buttons">
-          <input
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonPrimaryClass",
-              "kcButtonLargeClass",
-            )}
-            type="submit"
-            value={msgStr("doConfirmDelete")}
-          />
+          <Button type="submit" >{msgStr("doConfirmDelete")}</Button>
           {triggered_from_aia && (
-            <button
+            <Button
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonDefaultClass",
@@ -73,7 +67,7 @@ export default function DeleteAccountConfirm(
               value="true"
             >
               {msgStr("doCancel")}
-            </button>
+            </Button>
           )}
         </div>
       </form>

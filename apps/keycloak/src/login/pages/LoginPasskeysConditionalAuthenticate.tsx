@@ -1,3 +1,7 @@
+import { Button } from "@base/ui/components/button"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginPasskeysConditionalAuthenticate.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -197,23 +201,18 @@ export default function LoginPasskeysConditionalAuthenticate(
               >
                 {!usernameHidden && (
                   <div className={kcClsx("kcFormGroupClass")}>
-                    <label
-                      htmlFor="username"
-                      className={kcClsx("kcLabelClass")}
-                    >
+                    <Label htmlFor="username">
                       {msg("passkey-autofill-select")}
-                    </label>
-                    <input
-                      tabIndex={1}
+                    </Label>
+                    <Input tabIndex={1}
                       id="username"
                       aria-invalid={messagesPerField.existsError("username")}
-                      className={kcClsx("kcInputClass")}
+                      
                       name="username"
                       defaultValue={login.username ?? ""}
                       autoComplete="username webauthn"
                       type="text"
-                      autoFocus
-                    />
+                      autoFocus />
                     {messagesPerField.existsError("username") && (
                       <span
                         id="input-error-username"
@@ -232,18 +231,7 @@ export default function LoginPasskeysConditionalAuthenticate(
               className={kcClsx("kcFormButtonsClass")}
               style={{ display: "none" }}
             >
-              <input
-                id={authButtonId}
-                type="button"
-                autoFocus
-                value={msgStr("passkey-doAuthenticate")}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass",
-                )}
-              />
+              <Button type="button" id={authButtonId} autoFocus>{msgStr("passkey-doAuthenticate")}</Button>
             </div>
           </div>
         </div>
@@ -251,3 +239,4 @@ export default function LoginPasskeysConditionalAuthenticate(
     </Template>
   )
 }
+

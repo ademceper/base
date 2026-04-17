@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -88,28 +90,8 @@ export default function LoginOauthGrant(
 
             <div id="kc-form-buttons">
               <div className={kcClsx("kcFormButtonsWrapperClass")}>
-                <input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonLargeClass",
-                  )}
-                  name="accept"
-                  id="kc-login"
-                  type="submit"
-                  value={msgStr("doYes")}
-                />
-                <input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonDefaultClass",
-                    "kcButtonLargeClass",
-                  )}
-                  name="cancel"
-                  id="kc-cancel"
-                  type="submit"
-                  value={msgStr("doNo")}
-                />
+                <Button type="submit" name="accept" id="kc-login">{msgStr("doYes")}</Button>
+                <Button type="submit" name="cancel" id="kc-cancel">{msgStr("doNo")}</Button>
               </div>
             </div>
           </div>

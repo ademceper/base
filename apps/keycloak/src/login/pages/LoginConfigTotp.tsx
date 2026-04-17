@@ -1,3 +1,9 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
+
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -110,20 +116,18 @@ export default function LoginConfigTotp(
         >
           <div className={kcClsx("kcFormGroupClass")}>
             <div className={kcClsx("kcInputWrapperClass")}>
-              <label htmlFor="totp" className={kcClsx("kcLabelClass")}>
+              <Label htmlFor="totp">
                 {msg("authenticatorCode")}
-              </label>{" "}
+              </Label>{" "}
               <span className="required">*</span>
             </div>
             <div className={kcClsx("kcInputWrapperClass")}>
-              <input
-                type="text"
+              <Input type="text"
                 id="totp"
                 name="totp"
                 autoComplete="off"
-                className={kcClsx("kcInputClass")}
-                aria-invalid={messagesPerField.existsError("totp")}
-              />
+                
+                aria-invalid={messagesPerField.existsError("totp")} />
 
               {messagesPerField.existsError("totp") && (
                 <span
@@ -147,22 +151,20 @@ export default function LoginConfigTotp(
 
           <div className={kcClsx("kcFormGroupClass")}>
             <div className={kcClsx("kcInputWrapperClass")}>
-              <label htmlFor="userLabel" className={kcClsx("kcLabelClass")}>
+              <Label htmlFor="userLabel">
                 {msg("loginTotpDeviceName")}
-              </label>{" "}
+              </Label>{" "}
               {totp.otpCredentials.length >= 1 && (
                 <span className="required">*</span>
               )}
             </div>
             <div className={kcClsx("kcInputWrapperClass")}>
-              <input
-                type="text"
+              <Input type="text"
                 id="userLabel"
                 name="userLabel"
                 autoComplete="off"
-                className={kcClsx("kcInputClass")}
-                aria-invalid={messagesPerField.existsError("userLabel")}
-              />
+                
+                aria-invalid={messagesPerField.existsError("userLabel")} />
               {messagesPerField.existsError("userLabel") && (
                 <span
                   id="input-error-otp-label"
@@ -182,17 +184,8 @@ export default function LoginConfigTotp(
 
           {isAppInitiatedAction ? (
             <>
-              <input
-                type="submit"
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonLargeClass",
-                )}
-                id="saveTOTPBtn"
-                value={msgStr("doSubmit")}
-              />
-              <button
+              <Button type="submit" id="saveTOTPBtn">{msgStr("doSubmit")}</Button>
+              <Button
                 type="submit"
                 className={kcClsx(
                   "kcButtonClass",
@@ -205,19 +198,10 @@ export default function LoginConfigTotp(
                 value="true"
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             </>
           ) : (
-            <input
-              type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass",
-              )}
-              id="saveTOTPBtn"
-              value={msgStr("doSubmit")}
-            />
+            <Button type="submit" id="saveTOTPBtn">{msgStr("doSubmit")}</Button>
           )}
         </form>
       </>
@@ -234,16 +218,13 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              id="logout-sessions"
+          <Label>
+            <Checkbox id="logout-sessions"
               name="logout-sessions"
               value="on"
-              defaultChecked={true}
-            />
+              defaultChecked={true} />
             {msg("logoutOtherSessions")}
-          </label>
+          </Label>
         </div>
       </div>
     </div>

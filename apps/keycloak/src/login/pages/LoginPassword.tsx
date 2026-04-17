@@ -1,3 +1,7 @@
+import { Button } from "@base/ui/components/button"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 /**
  * Password step (login-password.ftl) for flows where username is already captured.
  * Adds conditional WebAuthn passkey authenticate section when enabled.
@@ -68,19 +72,18 @@ export default function LoginPassword(
               className={clsx(kcClsx("kcFormGroupClass"), "no-bottom-margin")}
             >
               <hr />
-              <label htmlFor="password" className={kcClsx("kcLabelClass")}>
+              <Label htmlFor="password">
                 {msg("password")}
-              </label>
+              </Label>
 
               <PasswordWrapper
                 kcClsx={kcClsx}
                 i18n={i18n}
                 passwordInputId="password"
               >
-                <input
-                  tabIndex={2}
+                <Input tabIndex={2}
                   id="password"
-                  className={kcClsx("kcInputClass")}
+                  
                   name="password"
                   type="password"
                   autoFocus
@@ -88,8 +91,7 @@ export default function LoginPassword(
                   aria-invalid={messagesPerField.existsError(
                     "username",
                     "password",
-                  )}
-                />
+                  )} />
               </PasswordWrapper>
 
               {messagesPerField.existsError("password") && (
@@ -117,20 +119,7 @@ export default function LoginPassword(
               </div>
             </div>
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-              <input
-                tabIndex={4}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass",
-                )}
-                name="login"
-                id="kc-login"
-                type="submit"
-                value={msgStr("doLogIn")}
-                disabled={isLoginButtonDisabled}
-              />
+              <Button type="submit" tabIndex={4} name="login" id="kc-login" disabled={isLoginButtonDisabled}>{msgStr("doLogIn")}</Button>
             </div>
           </form>
         </div>
@@ -168,17 +157,7 @@ export default function LoginPassword(
             )}
           <br />
 
-          <input
-            id={webAuthnButtonId}
-            type="button"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass",
-            )}
-            value={msgStr("passkey-doAuthenticate")}
-          />
+          <Button type="button" id={webAuthnButtonId}>{msgStr("passkey-doAuthenticate")}</Button>
         </>
       )}
     </Template>
@@ -201,7 +180,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -218,7 +197,8 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }
+

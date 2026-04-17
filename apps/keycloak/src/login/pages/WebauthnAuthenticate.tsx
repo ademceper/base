@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnAuthenticate.useScript"
@@ -174,18 +176,7 @@ export default function WebauthnAuthenticate(
             </>
           )}
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              id={authButtonId}
-              type="button"
-              autoFocus
-              value={msgStr("webauthn-doAuthenticate")}
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-            />
+            <Button type="button" id={authButtonId} autoFocus>{msgStr("webauthn-doAuthenticate")}</Button>
           </div>
         </div>
       </div>

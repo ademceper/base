@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -71,19 +73,9 @@ export default function UpdateEmail(props: UpdateEmailProps) {
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              disabled={!isFormSubmittable}
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                !isAppInitiatedAction && "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Button type="submit" disabled={!isFormSubmittable}>{msgStr("doSubmit")}</Button>
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -94,7 +86,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                 value="true"
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -113,13 +105,10 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
-              type="checkbox"
-              id="logout-sessions"
+            <Checkbox id="logout-sessions"
               name="logout-sessions"
               value="on"
-              defaultChecked={true}
-            />
+              defaultChecked={true} />
             {msg("logoutOtherSessions")}
           </label>
         </div>

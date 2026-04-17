@@ -1,3 +1,6 @@
+import { Button } from "@base/ui/components/button"
+import { Label } from "@base/ui/components/label"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -33,30 +36,21 @@ export default function LoginX509Info(
       >
         <div className={kcClsx("kcFormGroupClass")}>
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <label
-              htmlFor="certificate_subjectDN"
-              className={kcClsx("kcLabelClass")}
-            >
+            <Label htmlFor="certificate_subjectDN">
               {msg("clientCertificate")}
-            </label>
+            </Label>
           </div>
           {x509.formData.subjectDN ? (
             <div className={kcClsx("kcLabelWrapperClass")}>
-              <label
-                id="certificate_subjectDN"
-                className={kcClsx("kcLabelClass")}
-              >
+              <Label id="certificate_subjectDN">
                 {x509.formData.subjectDN}
-              </label>
+              </Label>
             </div>
           ) : (
             <div className={kcClsx("kcLabelWrapperClass")}>
-              <label
-                id="certificate_subjectDN"
-                className={kcClsx("kcLabelClass")}
-              >
+              <Label id="certificate_subjectDN">
                 {msg("noCertificate")}
-              </label>
+              </Label>
             </div>
           )}
         </div>
@@ -64,14 +58,14 @@ export default function LoginX509Info(
           {x509.formData.isUserEnabled && (
             <>
               <div className={kcClsx("kcLabelWrapperClass")}>
-                <label htmlFor="username" className={kcClsx("kcLabelClass")}>
+                <Label htmlFor="username">
                   {msg("doX509Login")}
-                </label>
+                </Label>
               </div>
               <div className={kcClsx("kcLabelWrapperClass")}>
-                <label id="username" className={kcClsx("kcLabelClass")}>
+                <Label id="username">
                   {x509.formData.username}
-                </label>
+                </Label>
               </div>
             </>
           )}
@@ -82,29 +76,9 @@ export default function LoginX509Info(
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <div className={kcClsx("kcFormButtonsWrapperClass")}>
-              <input
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonLargeClass",
-                )}
-                name="login"
-                id="kc-login"
-                type="submit"
-                value={msgStr("doContinue")}
-              />
+              <Button type="submit" name="login" id="kc-login">{msgStr("doContinue")}</Button>
               {x509.formData.isUserEnabled && (
-                <input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonDefaultClass",
-                    "kcButtonLargeClass",
-                  )}
-                  name="cancel"
-                  id="kc-cancel"
-                  type="submit"
-                  value={msgStr("doIgnore")}
-                />
+                <Button type="submit" name="cancel" id="kc-cancel">{msgStr("doIgnore")}</Button>
               )}
             </div>
           </div>
@@ -113,3 +87,4 @@ export default function LoginX509Info(
     </Template>
   )
 }
+

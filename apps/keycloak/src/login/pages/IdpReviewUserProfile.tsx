@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -67,17 +69,7 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
             <div className={kcClsx("kcFormOptionsWrapperClass")} />
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-              disabled={!isFomSubmittable}
-            />
+            <Button type="submit" disabled={!isFomSubmittable}>{msgStr("doSubmit")}</Button>
           </div>
         </div>
       </form>

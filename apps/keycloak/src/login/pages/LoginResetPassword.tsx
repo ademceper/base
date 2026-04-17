@@ -1,3 +1,7 @@
+import { Button } from "@base/ui/components/button"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -44,24 +48,22 @@ export default function LoginResetPassword(
       >
         <div className={kcClsx("kcFormGroupClass")}>
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <label htmlFor="username" className={kcClsx("kcLabelClass")}>
+            <Label htmlFor="username">
               {!realm.loginWithEmailAllowed
                 ? msg("username")
                 : !realm.registrationEmailAsUsername
                   ? msg("usernameOrEmail")
                   : msg("email")}
-            </label>
+            </Label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
-              type="text"
+            <Input type="text"
               id="username"
               name="username"
-              className={kcClsx("kcInputClass")}
+              
               autoFocus
               defaultValue={auth.attemptedUsername ?? ""}
-              aria-invalid={messagesPerField.existsError("username")}
-            />
+              aria-invalid={messagesPerField.existsError("username")} />
             {messagesPerField.existsError("username") && (
               <span
                 id="input-error-username"
@@ -84,19 +86,11 @@ export default function LoginResetPassword(
           </div>
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Button type="submit" >{msgStr("doSubmit")}</Button>
           </div>
         </div>
       </form>
     </Template>
   )
 }
+

@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnRegister.useScript"
@@ -67,17 +69,7 @@ export default function WebauthnRegister(
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
         </div>
       </form>
-      <input
-        type="submit"
-        className={kcClsx(
-          "kcButtonClass",
-          "kcButtonPrimaryClass",
-          "kcButtonBlockClass",
-          "kcButtonLargeClass",
-        )}
-        id={authButtonId}
-        value={msgStr("doRegisterSecurityKey")}
-      />
+      <Button type="submit" id={authButtonId}>{msgStr("doRegisterSecurityKey")}</Button>
 
       {!isSetRetry && isAppInitiatedAction && (
         <form
@@ -86,7 +78,7 @@ export default function WebauthnRegister(
           id="kc-webauthn-settings-form"
           method="post"
         >
-          <button
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -99,7 +91,7 @@ export default function WebauthnRegister(
             value="true"
           >
             {msg("doCancel")}
-          </button>
+          </Button>
         </form>
       )}
     </Template>
@@ -116,13 +108,10 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
-              type="checkbox"
-              id="logout-sessions"
+            <Checkbox id="logout-sessions"
               name="logout-sessions"
               value="on"
-              defaultChecked={true}
-            />
+              defaultChecked={true} />
             {msg("logoutOtherSessions")}
           </label>
         </div>

@@ -19,10 +19,12 @@
       "entry": [
         "src/login/KcPage.tsx",
         "src/login/KcPageStory.tsx",
-        "src/**/*.stories.tsx"
+        "src/**/*.stories.tsx",
+        "postcss.config.mjs"
       ],
       "project": ["src/**/*.{ts,tsx}"],
       "ignore": ["src/kc.gen.tsx"],
+      "ignoreDependencies": ["@tailwindcss/postcss", "tailwindcss"],
       "storybook": {
         "config": [".storybook/{main,preview}.{js,jsx,ts,tsx}"],
         "entry": ["src/**/*.stories.{js,jsx,ts,tsx}"]

@@ -1,3 +1,8 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 /**
  * Combined Username + Password login page (login.ftl) with optional WebAuthn passkey support.
  * Renders standard login form plus conditional passkey authenticator section.
@@ -142,17 +147,16 @@ export default function Login(
             >
               {!usernameHidden && (
                 <div className={kcClsx("kcFormGroupClass")}>
-                  <label htmlFor="username" className={kcClsx("kcLabelClass")}>
+                  <Label htmlFor="username">
                     {!realm.loginWithEmailAllowed
                       ? msg("username")
                       : !realm.registrationEmailAsUsername
                         ? msg("usernameOrEmail")
                         : msg("email")}
-                  </label>
-                  <input
-                    tabIndex={2}
+                  </Label>
+                  <Input tabIndex={2}
                     id="username"
-                    className={kcClsx("kcInputClass")}
+                    
                     name="username"
                     defaultValue={login.username ?? ""}
                     type="text"
@@ -165,8 +169,7 @@ export default function Login(
                     aria-invalid={messagesPerField.existsError(
                       "username",
                       "password",
-                    )}
-                  />
+                    )} />
                   {messagesPerField.existsError("username", "password") && (
                     <span
                       id="input-error"
@@ -186,26 +189,24 @@ export default function Login(
               )}
 
               <div className={kcClsx("kcFormGroupClass")}>
-                <label htmlFor="password" className={kcClsx("kcLabelClass")}>
+                <Label htmlFor="password">
                   {msg("password")}
-                </label>
+                </Label>
                 <PasswordWrapper
                   kcClsx={kcClsx}
                   i18n={i18n}
                   passwordInputId="password"
                 >
-                  <input
-                    tabIndex={3}
+                  <Input tabIndex={3}
                     id="password"
-                    className={kcClsx("kcInputClass")}
+                    
                     name="password"
                     type="password"
                     autoComplete="current-password"
                     aria-invalid={messagesPerField.existsError(
                       "username",
                       "password",
-                    )}
-                  />
+                    )} />
                 </PasswordWrapper>
                 {usernameHidden &&
                   messagesPerField.existsError("username", "password") && (
@@ -229,16 +230,13 @@ export default function Login(
                 <div id="kc-form-options">
                   {realm.rememberMe && !usernameHidden && (
                     <div className="checkbox">
-                      <label>
-                        <input
-                          tabIndex={5}
+                      <Label>
+                        <Checkbox tabIndex={5}
                           id="rememberMe"
                           name="rememberMe"
-                          type="checkbox"
-                          defaultChecked={!!login.rememberMe}
-                        />{" "}
+                          defaultChecked={!!login.rememberMe} />{" "}
                         {msg("rememberMe")}
-                      </label>
+                      </Label>
                     </div>
                   )}
                 </div>
@@ -260,20 +258,7 @@ export default function Login(
                   name="credentialId"
                   value={auth.selectedCredential}
                 />
-                <input
-                  tabIndex={7}
-                  disabled={isLoginButtonDisabled}
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass",
-                  )}
-                  name="login"
-                  id="kc-login"
-                  type="submit"
-                  value={msgStr("doLogIn")}
-                />
+                <Button type="submit" tabIndex={7} disabled={isLoginButtonDisabled} name="login" id="kc-login">{msgStr("doLogIn")}</Button>
               </div>
             </form>
           )}
@@ -312,17 +297,7 @@ export default function Login(
             )}
           <br />
 
-          <input
-            id={webAuthnButtonId}
-            type="button"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass",
-            )}
-            value={msgStr("passkey-doAuthenticate")}
-          />
+          <Button type="button" id={webAuthnButtonId}>{msgStr("passkey-doAuthenticate")}</Button>
         </>
       )}
     </Template>
@@ -345,7 +320,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -362,7 +337,8 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }
+

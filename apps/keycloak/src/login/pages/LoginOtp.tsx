@@ -1,3 +1,7 @@
+import { Button } from "@base/ui/components/button"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -55,7 +59,7 @@ export default function LoginOtp(
                       otpCredential.id === otpLogin.selectedCredentialId
                     }
                   />
-                  <label
+                  <Label
                     htmlFor={`kc-otp-credential-${index}`}
                     className={kcClsx("kcLoginOTPListClass")}
                     tabIndex={index}
@@ -73,7 +77,7 @@ export default function LoginOtp(
                         {otpCredential.userLabel}
                       </span>
                     </span>
-                  </label>
+                  </Label>
                 </Fragment>
               ))}
             </div>
@@ -82,20 +86,18 @@ export default function LoginOtp(
 
         <div className={kcClsx("kcFormGroupClass")}>
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <label htmlFor="otp" className={kcClsx("kcLabelClass")}>
+            <Label htmlFor="otp">
               {msg("loginOtpOneTime")}
-            </label>
+            </Label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
-              id="otp"
+            <Input id="otp"
               name="otp"
               autoComplete="off"
               type="text"
-              className={kcClsx("kcInputClass")}
+              
               autoFocus
-              aria-invalid={messagesPerField.existsError("totp")}
-            />
+              aria-invalid={messagesPerField.existsError("totp")} />
             {messagesPerField.existsError("totp") && (
               <span
                 id="input-error-otp-code"
@@ -114,22 +116,11 @@ export default function LoginOtp(
             <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass",
-              )}
-              name="login"
-              id="kc-login"
-              type="submit"
-              value={msgStr("doLogIn")}
-              disabled={isSubmitting}
-            />
+            <Button type="submit" name="login" id="kc-login" disabled={isSubmitting}>{msgStr("doLogIn")}</Button>
           </div>
         </div>
       </form>
     </Template>
   )
 }
+

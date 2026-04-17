@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { Fragment } from "react"
@@ -79,17 +81,7 @@ export default function LoginResetOtp(
                 id="kc-form-buttons"
                 className={kcClsx("kcFormButtonsClass")}
               >
-                <input
-                  id="kc-otp-reset-form-submit"
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass",
-                  )}
-                  type="submit"
-                  value={msgStr("doSubmit")}
-                />
+                <Button type="submit" id="kc-otp-reset-form-submit">{msgStr("doSubmit")}</Button>
               </div>
             </div>
           </div>

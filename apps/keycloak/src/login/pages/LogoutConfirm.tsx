@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -38,19 +40,7 @@ export default function LogoutConfirm(
               <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
             </div>
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-              <input
-                tabIndex={4}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass",
-                )}
-                name="confirmLogout"
-                id="kc-logout"
-                type="submit"
-                value={msgStr("doLogout")}
-              />
+              <Button type="submit" tabIndex={4} name="confirmLogout" id="kc-logout">{msgStr("doLogout")}</Button>
             </div>
           </div>
         </form>

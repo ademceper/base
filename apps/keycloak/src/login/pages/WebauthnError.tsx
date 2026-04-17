@@ -1,3 +1,5 @@
+import { Button } from "@base/ui/components/button"
+
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -67,7 +69,7 @@ export default function WebauthnError(
           id="kc-webauthn-settings-form"
           method="post"
         >
-          <button
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -80,7 +82,7 @@ export default function WebauthnError(
             value="true"
           >
             {msgStr("doCancel")}
-          </button>
+          </Button>
         </form>
       )}
     </Template>

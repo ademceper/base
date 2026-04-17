@@ -1,3 +1,8 @@
+import { Button } from "@base/ui/components/button"
+import { Checkbox } from "@base/ui/components/checkbox"
+import { Label } from "@base/ui/components/label"
+
+
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -124,7 +129,7 @@ export default function Register(props: RegisterProps) {
           !recaptchaVisible &&
           recaptchaAction !== undefined ? (
             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-              <button
+              <Button
                 className={clsx(
                   kcClsx(
                     "kcButtonClass",
@@ -140,24 +145,11 @@ export default function Register(props: RegisterProps) {
                 type="submit"
               >
                 {msg("doRegister")}
-              </button>
+              </Button>
             </div>
           ) : (
             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-              <input
-                disabled={
-                  !isFormSubmittable ||
-                  (termsAcceptanceRequired && !areTermsAccepted)
-                }
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass",
-                )}
-                type="submit"
-                value={msgStr("doRegister")}
-              />
+              <Button type="submit" disabled={ !isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted) }>{msgStr("doRegister")}</Button>
             </div>
           )}
         </div>
@@ -193,18 +185,19 @@ function TermsAcceptance(props: {
       </div>
       <div className="form-group">
         <div className={kcClsx("kcLabelWrapperClass")}>
-          <input
-            type="checkbox"
+          <Checkbox
             id="termsAccepted"
             name="termsAccepted"
             className={kcClsx("kcCheckboxInputClass")}
             checked={areTermsAccepted}
-            onChange={(e) => onAreTermsAcceptedValueChange(e.target.checked)}
+            onCheckedChange={(checked) =>
+              onAreTermsAcceptedValueChange(checked === true)
+            }
             aria-invalid={messagesPerField.existsError("termsAccepted")}
           />
-          <label htmlFor="termsAccepted" className={kcClsx("kcLabelClass")}>
+          <Label htmlFor="termsAccepted">
             {msg("acceptTerms")}
-          </label>
+          </Label>
         </div>
         {messagesPerField.existsError("termsAccepted") && (
           <div className={kcClsx("kcLabelWrapperClass")}>
