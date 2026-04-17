@@ -1,5 +1,5 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "@base/ts-cfg/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },
