@@ -1,3 +1,8 @@
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Label } from "@base/ui/components/label"
@@ -39,26 +44,12 @@ export default function LoginRecoveryAuthnCodeConfig(
       classes={classes}
       headerNode={msg("recovery-code-config-header")}
     >
-      <div
-        className={clsx(
-          "pf-c-alert",
-          "pf-m-warning",
-          "pf-m-inline",
-          kcClsx("kcRecoveryCodesWarning"),
-        )}
-        aria-label="Warning alert"
-      >
-        <div className="pf-c-alert__icon">
-          <i className="pficon-warning-triangle-o" aria-hidden="true" />
-        </div>
-        <h4 className="pf-c-alert__title">
-          <span className="pf-screen-reader">Warning alert:</span>
-          {msg("recovery-code-config-warning-title")}
-        </h4>
-        <div className="pf-c-alert__description">
-          <p>{msg("recovery-code-config-warning-message")}</p>
-        </div>
-      </div>
+      <Alert>
+        <AlertTitle>{msg("recovery-code-config-warning-title")}</AlertTitle>
+        <AlertDescription>
+          {msg("recovery-code-config-warning-message")}
+        </AlertDescription>
+      </Alert>
 
       <ol id={olRecoveryCodesListId} className={kcClsx("kcRecoveryCodesList")}>
         {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map(

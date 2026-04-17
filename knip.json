@@ -26,8 +26,8 @@
       "ignore": ["src/kc.gen.tsx"],
       "ignoreDependencies": ["@tailwindcss/postcss", "tailwindcss"],
       "storybook": {
-        "config": [".storybook/{main,preview}.{js,jsx,ts,tsx}"],
-        "entry": ["src/**/*.stories.{js,jsx,ts,tsx}"]
+        "config": [".storybook/main.{js,jsx,ts,tsx}"],
+        "entry": ["src/**/*.stories.{js,jsx,ts,tsx}", ".storybook/preview.{js,jsx,ts,tsx}"]
       }
     },
     "packages/ts-cfg": {

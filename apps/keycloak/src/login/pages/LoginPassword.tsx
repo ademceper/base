@@ -1,6 +1,7 @@
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
+import { Separator } from "@base/ui/components/separator"
 
 /**
  * Password step (login-password.ftl) for flows where username is already captured.
@@ -71,7 +72,7 @@ export default function LoginPassword(
             <div
               className={clsx(kcClsx("kcFormGroupClass"), "no-bottom-margin")}
             >
-              <hr />
+              <Separator />
               <Label htmlFor="password">
                 {msg("password")}
               </Label>

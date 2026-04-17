@@ -2,6 +2,7 @@ import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
+import { Separator } from "@base/ui/components/separator"
 
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginUsername.useScript"
@@ -75,7 +76,7 @@ export default function LoginUsername(
                 id="kc-social-providers"
                 className={kcClsx("kcFormSocialAccountSectionClass")}
               >
-                <hr />
+                <Separator />
                 <h2>{msg("identity-provider-login-label")}</h2>
                 <ul
                   className={kcClsx(
