@@ -18,7 +18,7 @@
     "apps/keycloak": {
       "entry": ["src/login/KcPage.tsx", "src/login/KcPageStory.tsx"],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignore": ["src/kc.gen.tsx", "src/login/i18n.ts"]
+      "ignore": ["src/kc.gen.tsx"]
     },
     "packages/ts-cfg": {
       "entry": [],

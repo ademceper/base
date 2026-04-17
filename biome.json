@@ -45,6 +45,19 @@
       }
     },
     {
+      "includes": [
+        "apps/keycloak/src/login/pages/**",
+        "apps/keycloak/src/login/Template.tsx",
+        "apps/keycloak/src/login/UserProfileFormFields.tsx"
+      ],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
+    },
+    {
       "includes": ["packages/ui/src/components/**"],
       "linter": {
         "rules": {
