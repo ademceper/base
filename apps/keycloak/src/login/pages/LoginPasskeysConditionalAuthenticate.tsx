@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
@@ -214,13 +215,15 @@ export default function LoginPasskeysConditionalAuthenticate(
                       type="text"
                       autoFocus />
                     {messagesPerField.existsError("username") && (
-                      <span
+                      <Alert
+                        variant="destructive"
                         id="input-error-username"
-                        className={kcClsx("kcInputErrorMessageClass")}
                         aria-live="polite"
                       >
-                        {messagesPerField.get("username")}
-                      </span>
+                        <AlertDescription>
+                          {messagesPerField.get("username")}
+                        </AlertDescription>
+                      </Alert>
                     )}
                   </div>
                 )}

@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Input } from "@base/ui/components/input"
@@ -130,14 +131,9 @@ export default function LoginConfigTotp(
                 aria-invalid={messagesPerField.existsError("totp")} />
 
               {messagesPerField.existsError("totp") && (
-                <span
-                  id="input-error-otp-code"
-                  className={kcClsx("kcInputErrorMessageClass")}
-                  aria-live="polite"
-                  dangerouslySetInnerHTML={{
-                    __html: kcSanitize(messagesPerField.get("totp")),
-                  }}
-                />
+                <Alert variant="destructive" id="input-error-otp-code" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("totp")) }} />
+</Alert>
               )}
             </div>
             <input
@@ -166,14 +162,9 @@ export default function LoginConfigTotp(
                 
                 aria-invalid={messagesPerField.existsError("userLabel")} />
               {messagesPerField.existsError("userLabel") && (
-                <span
-                  id="input-error-otp-label"
-                  className={kcClsx("kcInputErrorMessageClass")}
-                  aria-live="polite"
-                  dangerouslySetInnerHTML={{
-                    __html: kcSanitize(messagesPerField.get("userLabel")),
-                  }}
-                />
+                <Alert variant="destructive" id="input-error-otp-label" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("userLabel")) }} />
+</Alert>
               )}
             </div>
           </div>

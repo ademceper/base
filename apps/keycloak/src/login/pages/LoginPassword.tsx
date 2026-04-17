@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
@@ -96,14 +97,9 @@ export default function LoginPassword(
               </PasswordWrapper>
 
               {messagesPerField.existsError("password") && (
-                <span
-                  id="input-error-password"
-                  className={kcClsx("kcInputErrorMessageClass")}
-                  aria-live="polite"
-                  dangerouslySetInnerHTML={{
-                    __html: kcSanitize(messagesPerField.get("password")),
-                  }}
-                />
+                <Alert variant="destructive" id="input-error-password" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("password")) }} />
+</Alert>
               )}
             </div>
             <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>

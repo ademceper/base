@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Label } from "@base/ui/components/label"
@@ -201,14 +202,9 @@ function TermsAcceptance(props: {
         </div>
         {messagesPerField.existsError("termsAccepted") && (
           <div className={kcClsx("kcLabelWrapperClass")}>
-            <span
-              id="input-error-terms-accepted"
-              className={kcClsx("kcInputErrorMessageClass")}
-              aria-live="polite"
-              dangerouslySetInnerHTML={{
-                __html: kcSanitize(messagesPerField.get("termsAccepted")),
-              }}
-            />
+            <Alert variant="destructive" id="input-error-terms-accepted" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("termsAccepted")) }} />
+</Alert>
           </div>
         )}
       </div>

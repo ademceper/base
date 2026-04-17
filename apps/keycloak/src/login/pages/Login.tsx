@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Input } from "@base/ui/components/input"
@@ -98,34 +99,36 @@ export default function Login(
                 >
                   {social.providers.map((...[p, , providers]) => (
                     <li key={p.alias}>
-                      <a
-                        id={`social-${p.alias}`}
-                        className={kcClsx(
-                          "kcFormSocialAccountListButtonClass",
-                          providers.length > 3 && "kcFormSocialAccountGridItem",
-                        )}
-                        type="button"
-                        href={p.loginUrl}
-                      >
-                        {p.iconClasses && (
-                          <i
-                            className={clsx(
-                              kcClsx("kcCommonLogoIdP"),
-                              p.iconClasses,
-                            )}
-                            aria-hidden="true"
-                          ></i>
-                        )}
-                        <span
-                          className={clsx(
-                            kcClsx("kcFormSocialAccountNameClass"),
-                            p.iconClasses && "kc-social-icon-text",
+                      <Button asChild variant="outline">
+                        <a
+                          id={`social-${p.alias}`}
+                          className={kcClsx(
+                            "kcFormSocialAccountListButtonClass",
+                            providers.length > 3 &&
+                              "kcFormSocialAccountGridItem",
                           )}
-                          dangerouslySetInnerHTML={{
-                            __html: kcSanitize(p.displayName),
-                          }}
-                        ></span>
-                      </a>
+                          href={p.loginUrl}
+                        >
+                          {p.iconClasses && (
+                            <i
+                              className={clsx(
+                                kcClsx("kcCommonLogoIdP"),
+                                p.iconClasses,
+                              )}
+                              aria-hidden="true"
+                            />
+                          )}
+                          <span
+                            className={clsx(
+                              kcClsx("kcFormSocialAccountNameClass"),
+                              p.iconClasses && "kc-social-icon-text",
+                            )}
+                            dangerouslySetInnerHTML={{
+                              __html: kcSanitize(p.displayName),
+                            }}
+                          />
+                        </a>
+                      </Button>
                     </li>
                   ))}
                 </ul>
@@ -172,19 +175,14 @@ export default function Login(
                       "password",
                     )} />
                   {messagesPerField.existsError("username", "password") && (
-                    <span
-                      id="input-error"
-                      className={kcClsx("kcInputErrorMessageClass")}
-                      aria-live="polite"
-                      dangerouslySetInnerHTML={{
-                        __html: kcSanitize(
+                    <Alert variant="destructive" id="input-error" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(
                           messagesPerField.getFirstError(
                             "username",
                             "password",
                           ),
-                        ),
-                      }}
-                    />
+                        ) }} />
+</Alert>
                   )}
                 </div>
               )}
@@ -211,19 +209,14 @@ export default function Login(
                 </PasswordWrapper>
                 {usernameHidden &&
                   messagesPerField.existsError("username", "password") && (
-                    <span
-                      id="input-error"
-                      className={kcClsx("kcInputErrorMessageClass")}
-                      aria-live="polite"
-                      dangerouslySetInnerHTML={{
-                        __html: kcSanitize(
+                    <Alert variant="destructive" id="input-error" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(
                           messagesPerField.getFirstError(
                             "username",
                             "password",
                           ),
-                        ),
-                      }}
-                    />
+                        ) }} />
+</Alert>
                   )}
               </div>
 

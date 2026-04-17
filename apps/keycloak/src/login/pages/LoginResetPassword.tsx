@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
@@ -65,14 +66,9 @@ export default function LoginResetPassword(
               defaultValue={auth.attemptedUsername ?? ""}
               aria-invalid={messagesPerField.existsError("username")} />
             {messagesPerField.existsError("username") && (
-              <span
-                id="input-error-username"
-                className={kcClsx("kcInputErrorMessageClass")}
-                aria-live="polite"
-                dangerouslySetInnerHTML={{
-                  __html: kcSanitize(messagesPerField.get("username")),
-                }}
-              />
+              <Alert variant="destructive" id="input-error-username" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("username")) }} />
+</Alert>
             )}
           </div>
         </div>

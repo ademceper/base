@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Input } from "@base/ui/components/input"
@@ -87,33 +88,35 @@ export default function LoginUsername(
                 >
                   {social.providers.map((...[p, , providers]) => (
                     <li key={p.alias}>
-                      <a
-                        id={`social-${p.alias}`}
-                        className={kcClsx(
-                          "kcFormSocialAccountListButtonClass",
-                          providers.length > 3 && "kcFormSocialAccountGridItem",
-                        )}
-                        type="button"
-                        href={p.loginUrl}
-                      >
-                        {p.iconClasses && (
-                          <i
-                            className={clsx(
-                              kcClsx("kcCommonLogoIdP"),
-                              p.iconClasses,
-                            )}
-                            aria-hidden="true"
-                          ></i>
-                        )}
-                        <span
-                          className={clsx(
-                            kcClsx("kcFormSocialAccountNameClass"),
-                            p.iconClasses && "kc-social-icon-text",
+                      <Button asChild variant="outline">
+                        <a
+                          id={`social-${p.alias}`}
+                          className={kcClsx(
+                            "kcFormSocialAccountListButtonClass",
+                            providers.length > 3 &&
+                              "kcFormSocialAccountGridItem",
                           )}
+                          href={p.loginUrl}
                         >
-                          {p.displayName}
-                        </span>
-                      </a>
+                          {p.iconClasses && (
+                            <i
+                              className={clsx(
+                                kcClsx("kcCommonLogoIdP"),
+                                p.iconClasses,
+                              )}
+                              aria-hidden="true"
+                            />
+                          )}
+                          <span
+                            className={clsx(
+                              kcClsx("kcFormSocialAccountNameClass"),
+                              p.iconClasses && "kc-social-icon-text",
+                            )}
+                          >
+                            {p.displayName}
+                          </span>
+                        </a>
+                      </Button>
                     </li>
                   ))}
                 </ul>
@@ -157,13 +160,15 @@ export default function LoginUsername(
                     }
                     aria-invalid={messagesPerField.existsError("username")} />
                   {messagesPerField.existsError("username") && (
-                    <span
+                    <Alert
+                      variant="destructive"
                       id="input-error"
-                      className={kcClsx("kcInputErrorMessageClass")}
                       aria-live="polite"
                     >
-                      {messagesPerField.getFirstError("username")}
-                    </span>
+                      <AlertDescription>
+                        {messagesPerField.getFirstError("username")}
+                      </AlertDescription>
+                    </Alert>
                   )}
                 </div>
               )}

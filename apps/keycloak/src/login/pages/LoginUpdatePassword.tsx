@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Checkbox } from "@base/ui/components/checkbox"
 import { Input } from "@base/ui/components/input"
@@ -69,14 +70,9 @@ export default function LoginUpdatePassword(
             </PasswordWrapper>
 
             {messagesPerField.existsError("password") && (
-              <span
-                id="input-error-password"
-                className={kcClsx("kcInputErrorMessageClass")}
-                aria-live="polite"
-                dangerouslySetInnerHTML={{
-                  __html: kcSanitize(messagesPerField.get("password")),
-                }}
-              />
+              <Alert variant="destructive" id="input-error-password" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("password")) }} />
+</Alert>
             )}
           </div>
         </div>
@@ -105,14 +101,9 @@ export default function LoginUpdatePassword(
             </PasswordWrapper>
 
             {messagesPerField.existsError("password-confirm") && (
-              <span
-                id="input-error-password-confirm"
-                className={kcClsx("kcInputErrorMessageClass")}
-                aria-live="polite"
-                dangerouslySetInnerHTML={{
-                  __html: kcSanitize(messagesPerField.get("password-confirm")),
-                }}
-              />
+              <Alert variant="destructive" id="input-error-password-confirm" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("password-confirm")) }} />
+</Alert>
             )}
           </div>
         </div>

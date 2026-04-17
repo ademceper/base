@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
@@ -59,14 +60,9 @@ export default function LoginRecoveryAuthnCodeInput(
               
               autoFocus />
             {messagesPerField.existsError("recoveryCodeInput") && (
-              <span
-                id="input-error"
-                className={kcClsx("kcInputErrorMessageClass")}
-                aria-live="polite"
-                dangerouslySetInnerHTML={{
-                  __html: kcSanitize(messagesPerField.get("recoveryCodeInput")),
-                }}
-              />
+              <Alert variant="destructive" id="input-error" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("recoveryCodeInput")) }} />
+</Alert>
             )}
           </div>
         </div>

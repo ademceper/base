@@ -1,3 +1,4 @@
+import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import { Input } from "@base/ui/components/input"
 import { Label } from "@base/ui/components/label"
@@ -99,14 +100,9 @@ export default function LoginOtp(
               autoFocus
               aria-invalid={messagesPerField.existsError("totp")} />
             {messagesPerField.existsError("totp") && (
-              <span
-                id="input-error-otp-code"
-                className={kcClsx("kcInputErrorMessageClass")}
-                aria-live="polite"
-                dangerouslySetInnerHTML={{
-                  __html: kcSanitize(messagesPerField.get("totp")),
-                }}
-              />
+              <Alert variant="destructive" id="input-error-otp-code" aria-live="polite">
+<AlertDescription dangerouslySetInnerHTML={{ __html: kcSanitize(messagesPerField.get("totp")) }} />
+</Alert>
             )}
           </div>
         </div>
