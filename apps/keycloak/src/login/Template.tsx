@@ -46,7 +46,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     message?.type === "error" ? "destructive" : "default"
 
   return (
-    <div className="relative flex min-h-svh flex-col items-center justify-center bg-background px-4 py-10 text-foreground antialiased">
+    <div className="relative flex min-h-svh flex-col items-center bg-background px-4 pt-24 pb-10 text-foreground antialiased">
       {enabledLanguages.length > 1 && (
         <div className="absolute top-0 right-0 px-6 py-4">
           <DropdownMenu>
@@ -72,7 +72,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       )}
 
       <div
-        className="absolute inset-x-0 top-16 text-center text-2xl tracking-tight"
+        className="mb-16 text-center text-2xl tracking-tight"
         style={{ fontFamily: "'Climate Crisis', sans-serif" }}
       >
         {realm.displayName || realm.name}
