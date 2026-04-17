@@ -1,13 +1,6 @@
 import { Alert, AlertDescription } from "@base/ui/components/alert"
 import { Button } from "@base/ui/components/button"
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@base/ui/components/card"
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -54,7 +47,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
   return (
     <div className="relative flex min-h-svh flex-col items-center justify-center bg-background px-4 py-10 text-foreground antialiased">
-      <div className="absolute inset-x-0 top-0 mx-auto flex w-full max-w-md items-center justify-between px-6 py-4">
+      <div className="absolute inset-x-0 top-0 mx-auto flex w-full max-w-sm items-center justify-between px-6 py-4">
         <span className="text-sm font-medium tracking-tight text-muted-foreground">
           {realm.displayName || realm.name}
         </span>
@@ -81,8 +74,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
         )}
       </div>
 
-      <Card className="w-full max-w-md border-border/60 shadow-sm">
-        <CardHeader className="space-y-1 pb-4">
+      <main className="w-full max-w-sm space-y-6">
+        <header className="space-y-1">
           {auth?.showUsername && !auth.showResetCredentials ? (
             <div className="flex items-center justify-between">
               <div id="kc-attempted-username" className="text-sm font-medium">
@@ -99,9 +92,9 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
               </Button>
             </div>
           ) : (
-            <CardTitle className="text-center text-xl font-semibold tracking-tight">
+            <h1 className="text-center text-xl font-semibold tracking-tight">
               {headerNode}
-            </CardTitle>
+            </h1>
           )}
 
           {displayRequiredFields && (
@@ -110,54 +103,55 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
               {msg("requiredFields")}
             </p>
           )}
-        </CardHeader>
+        </header>
 
-        <CardContent className="space-y-4">
-          {displayMessage &&
-            message !== undefined &&
-            (message.type !== "warning" || !isAppInitiatedAction) && (
-              <Alert variant={alertVariant}>
-                <AlertDescription
-                  // biome-ignore lint/security/noDangerouslySetInnerHtml: sanitized via kcSanitize
-                  dangerouslySetInnerHTML={{
-                    __html: kcSanitize(message.summary),
-                  }}
-                />
-              </Alert>
-            )}
-
-          {children}
-
-          {auth?.showTryAnotherWayLink && (
-            <form
-              id="kc-select-try-another-way-form"
-              action={url.loginAction}
-              method="post"
-            >
-              <input type="hidden" name="tryAnotherWay" value="on" />
-              <Button
-                type="submit"
-                variant="link"
-                size="sm"
-                id="try-another-way"
-                className="w-full"
-              >
-                {msg("doTryAnotherWay")}
-              </Button>
-            </form>
+        {displayMessage &&
+          message !== undefined &&
+          (message.type !== "warning" || !isAppInitiatedAction) && (
+            <Alert variant={alertVariant}>
+              <AlertDescription
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: sanitized via kcSanitize
+                dangerouslySetInnerHTML={{
+                  __html: kcSanitize(message.summary),
+                }}
+              />
+            </Alert>
           )}
 
-          {socialProvidersNode}
-        </CardContent>
+        <div className="space-y-4">{children}</div>
+
+        {auth?.showTryAnotherWayLink && (
+          <form
+            id="kc-select-try-another-way-form"
+            action={url.loginAction}
+            method="post"
+          >
+            <input type="hidden" name="tryAnotherWay" value="on" />
+            <Button
+              type="submit"
+              variant="link"
+              size="sm"
+              id="try-another-way"
+              className="w-full"
+            >
+              {msg("doTryAnotherWay")}
+            </Button>
+          </form>
+        )}
+
+        {socialProvidersNode}
 
         {displayInfo && (
-          <CardFooter className="flex justify-center border-t border-border/60 pt-4 text-sm text-muted-foreground">
-            <div id="kc-info-wrapper">{infoNode}</div>
-          </CardFooter>
+          <div
+            id="kc-info-wrapper"
+            className="pt-2 text-center text-sm text-muted-foreground"
+          >
+            {infoNode}
+          </div>
         )}
-      </Card>
+      </main>
 
-      <div className="absolute inset-x-0 bottom-0 mx-auto flex w-full max-w-md items-center justify-center px-6 py-6 text-xs text-muted-foreground">
+      <div className="absolute inset-x-0 bottom-0 mx-auto flex w-full max-w-sm items-center justify-center px-6 py-6 text-xs text-muted-foreground">
         © {new Date().getFullYear()} {realm.displayName || realm.name}
       </div>
     </div>
