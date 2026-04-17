@@ -150,10 +150,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           </div>
         )}
       </main>
-
-      <div className="absolute inset-x-0 bottom-0 mx-auto flex w-full max-w-sm items-center justify-center px-6 py-6 text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {realm.displayName || realm.name}
-      </div>
     </div>
   )
 }
