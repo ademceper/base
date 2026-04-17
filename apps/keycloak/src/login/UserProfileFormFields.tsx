@@ -1,3 +1,11 @@
+import { Button } from "@base/ui/components/button"
+import { Input } from "@base/ui/components/input"
+import { Label } from "@base/ui/components/label"
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@base/ui/components/native-select"
+import { Textarea } from "@base/ui/components/textarea"
 import type { Attribute } from "keycloakify/login/KcContext"
 import type { KcClsx } from "keycloakify/login/lib/kcClsx"
 import {
@@ -78,13 +86,12 @@ export default function UserProfileFormFields(
                 }}
               >
                 <div className={kcClsx("kcLabelWrapperClass")}>
-                  <label
-                    htmlFor={attribute.name}
-                    className={kcClsx("kcLabelClass")}
-                  >
+                  <Label htmlFor={attribute.name}>
                     {advancedMsg(attribute.displayName ?? "")}
-                  </label>
-                  {attribute.required && <> *</>}
+                    {attribute.required && (
+                      <span className="text-destructive">*</span>
+                    )}
+                  </Label>
                 </div>
                 <div className={kcClsx("kcInputWrapperClass")}>
                   {attribute.annotations.inputHelperTextBefore !==
@@ -177,12 +184,9 @@ function GroupLabel(props: {
 
             return (
               <div className={kcClsx("kcContentWrapperClass")}>
-                <label
-                  id={`header-${attribute.group.name}`}
-                  className={kcClsx("kcFormGroupHeader")}
-                >
+                <Label id={`header-${attribute.group.name}`}>
                   {groupHeaderText}
-                </label>
+                </Label>
               </div>
             )
           })()}
@@ -195,12 +199,9 @@ function GroupLabel(props: {
 
               return (
                 <div className={kcClsx("kcLabelWrapperClass")}>
-                  <label
-                    id={`description-${attribute.group.name}`}
-                    className={kcClsx("kcLabelClass")}
-                  >
+                  <Label id={`description-${attribute.group.name}`}>
                     {groupDescriptionText}
-                  </label>
+                  </Label>
                 </div>
               )
             }
@@ -323,9 +324,10 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
-        className={kcClsx("kcFormPasswordVisibilityButtonClass")}
+        variant="ghost"
+        size="sm"
         aria-label={msgStr(
           isPasswordRevealed ? "hidePassword" : "showPassword",
         )}
@@ -340,7 +342,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }
@@ -362,7 +364,7 @@ function InputTag(
 
   return (
     <>
-      <input
+      <Input
         type={(() => {
           const { inputType } = attribute.annotations
 
@@ -384,7 +386,6 @@ function InputTag(
 
           return valueOrValues
         })()}
-        className={kcClsx("kcInputClass")}
         aria-invalid={
           displayableErrors.find((error) => error.fieldIndex === fieldIndex) !==
           undefined
@@ -503,10 +504,11 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
     <>
       {hasRemove && (
         <>
-          <button
+          <Button
             id={`kc-remove${idPostfix}`}
             type="button"
-            className="pf-c-button pf-m-inline pf-m-link"
+            variant="link"
+            size="sm"
             onClick={() =>
               dispatchFormAction({
                 action: "update",
@@ -516,15 +518,16 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
             }
           >
             {msg("remove")}
-          </button>
+          </Button>
           {hasAdd ? <>&nbsp;|&nbsp;</> : null}
         </>
       )}
       {hasAdd && (
-        <button
+        <Button
           id={`kc-add${idPostfix}`}
           type="button"
-          className="pf-c-button pf-m-inline pf-m-link"
+          variant="link"
+          size="sm"
           onClick={() =>
             dispatchFormAction({
               action: "update",
@@ -534,7 +537,7 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
           }
         >
           {msg("addValue")}
-        </button>
+        </Button>
       )}
     </>
   )
@@ -643,12 +646,12 @@ function InputTagSelects(props: InputFieldByTypeProps) {
               })
             }
           />
-          <label
+          <Label
             htmlFor={`${attribute.name}-${option}`}
             className={`${classLabel}${attribute.readOnly ? ` ${kcClsx("kcInputClassRadioCheckboxLabelDisabled")}` : ""}`}
           >
             {inputLabel(i18n, attribute, option)}
-          </label>
+          </Label>
         </div>
       ))}
     </>
@@ -659,7 +662,6 @@ function TextareaTag(props: InputFieldByTypeProps) {
   const {
     attribute,
     dispatchFormAction,
-    kcClsx,
     displayableErrors,
     valueOrValues,
   } = props
@@ -669,10 +671,9 @@ function TextareaTag(props: InputFieldByTypeProps) {
   const value = valueOrValues
 
   return (
-    <textarea
+    <Textarea
       id={attribute.name}
       name={attribute.name}
-      className={kcClsx("kcInputClass")}
       aria-invalid={displayableErrors.length !== 0}
       disabled={attribute.readOnly}
       cols={
@@ -713,7 +714,6 @@ function SelectTag(props: InputFieldByTypeProps) {
   const {
     attribute,
     dispatchFormAction,
-    kcClsx,
     displayableErrors,
     i18n,
     valueOrValues,
@@ -722,18 +722,12 @@ function SelectTag(props: InputFieldByTypeProps) {
   const isMultiple = attribute.annotations.inputType === "multiselect"
 
   return (
-    <select
+    <NativeSelect
       id={attribute.name}
       name={attribute.name}
-      className={kcClsx("kcInputClass")}
       aria-invalid={displayableErrors.length !== 0}
       disabled={attribute.readOnly}
       multiple={isMultiple}
-      size={
-        attribute.annotations.inputTypeSize === undefined
-          ? undefined
-          : parseInt(`${attribute.annotations.inputTypeSize}`)
-      }
       value={valueOrValues}
       onChange={(event) =>
         dispatchFormAction({
@@ -758,7 +752,7 @@ function SelectTag(props: InputFieldByTypeProps) {
         })
       }
     >
-      {!isMultiple && <option value=""></option>}
+      {!isMultiple && <NativeSelectOption value="" />}
       {(() => {
         const options = (() => {
           walk: {
@@ -789,12 +783,12 @@ function SelectTag(props: InputFieldByTypeProps) {
         })()
 
         return options.map((option) => (
-          <option key={option} value={option}>
+          <NativeSelectOption key={option} value={option}>
             {inputLabel(i18n, attribute, option)}
-          </option>
+          </NativeSelectOption>
         ))
       })()}
-    </select>
+    </NativeSelect>
   )
 }
 
